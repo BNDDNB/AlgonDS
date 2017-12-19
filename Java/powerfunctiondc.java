@@ -7,7 +7,7 @@ public class Powerfunctiondc {
         //base case when power term is 0, then return 1, otherwise
         //divide the power until it could multiply the x values itself
         if (y == 0) return 1;
-        temp = power(x,y/2);
+        double temp = power(x,y/2);
         if(y%2==0) return temp * temp;
         else return temp*temp * x;
     }
