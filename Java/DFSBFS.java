@@ -40,3 +40,12 @@ public static UndirectedNode solover(UndirectedNode un){
 	}	
 	return visited.get(un);
 }
+
+//dfs solution below
+
+public static UndirectedNode solver(UndirectedNode un){
+	if (un==null) return null;
+	//create a map tracking visited nodes
+	HashMap <UndirectedNode> visited = new HashMap<>();
+	
+}
