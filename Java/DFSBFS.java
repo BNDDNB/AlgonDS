@@ -43,9 +43,15 @@ public static UndirectedNode solover(UndirectedNode un){
 
 //dfs solution below
 
+public static void dfsfunc(HashMap<UndirectedNode> visited, UndirectedNode un){
+
+
+}
+
 public static UndirectedNode solver(UndirectedNode un){
 	if (un==null) return null;
 	//create a map tracking visited nodes
 	HashMap <UndirectedNode> visited = new HashMap<>();
-	
+	dfsfunc(visited, un);
+	return visited.get()
 }
