@@ -43,8 +43,15 @@ public static UndirectedNode solover(UndirectedNode un){
 
 //dfs solution below
 
-public static void dfsfunc(HashMap<UndirectedNode> visited, UndirectedNode un){
-
+public static UndirectedNode dfsfunc(HashMap<UndirectedNode> visited, UndirectedNode un){
+	//preventing stuck in loops
+	if (visited.containsKey(un)) return visited.get(un);
+	UndirectedNode cloneNode = new UndirectedNode (un.label);
+	visited.put(un, cloneNode);
+	for (UndirectedNode t: un.neighbours){
+		cloneNode.neighbours.add(dfsfunc(visited, t));
+	}
+	return cloneNode;
 
 }
 
