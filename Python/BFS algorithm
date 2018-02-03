@@ -1,0 +1,63 @@
+class Graph:
+    def __init__(self, val):
+        self.tree = {}
+        self.val = val
+        for i in range(self.val):
+            self.tree[i]=[]     
+        
+        
+    def connect(self, x, y):
+        self.tree[x].append(y)
+        self.tree[y].append(x)
+            
+    def find_all_distances(self,node):
+        #print(self.tree)
+        level_cost = 6
+        cur_level = 1
+        nodes_remaining = len(self.tree[node])
+        nodes_accumulated=0
+        q= []
+        visited=[]
+        costs=[-1]*self.val
+        q.extend(self.tree[node])
+        while len(q)!=0:
+            if q[0] in visited:
+                q.pop(0)
+                nodes_remaining-=1
+                if nodes_remaining <= 0:
+                    nodes_remainig=nodes_accumulated
+                    nodes_accumulated =0
+                continue
+            costs[q[0]] = level_cost * cur_level
+            q.extend(self.tree[q[0]])
+            nodes_accumulated += len(self.tree[q[0]])
+            #print("nodes_acc: "+str(nodes_accumulated))
+            visited.append(q[0])
+            q.pop(0)
+            nodes_remaining -= 1
+            #print("nodes_r: "+str(nodes_remaining))
+            if nodes_remaining <= 0:
+                nodes_remaining=nodes_accumulated
+                nodes_accumulated =0
+                cur_level += 1
+        
+        for i in range(self.val):
+            if i == node:
+                continue
+            else:
+                print(costs[i], end=" ")
+        print("")
+        
+
+        
+t = int(input())
+for i in range(t):
+    
+    n,m = [int(value) for value in input().split()]
+    graph = Graph(n)
+    for i in range(m):
+        x,y = [int(x) for x in input().split()]
+        graph.connect(x-1,y-1) 
+        
+    s = int(input())
+    graph.find_all_distances(s-1)
